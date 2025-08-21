@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`getData Схема 1`] = `
+[
+  "1",
+  "2",
+  "3",
+  "4",
+]
+`;
