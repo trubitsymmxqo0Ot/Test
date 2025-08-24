@@ -4,6 +4,8 @@ import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Routes,Route } from "react-router-dom";
 import { UserDetailsPage } from "../pages/UserDetailsPage";
+import { AppRouter } from "../router/AppRouter";
+import { renderWithRouter } from "../tests/helpers/renderWithRouter";
 
 vi.mock('axios');
 
@@ -41,14 +43,14 @@ describe('users test', () => {
     })
     test('dynamic route', async () => {
       axios.get.mockResolvedValue(response);
-      render(
-        <MemoryRouter initialEntries={['/users']}>
-          <Routes>
-            <Route path='/users' element={<Users/>}/>
-            <Route path='/users/:id' element={<UserDetailsPage/>}/>
-          </Routes>
-        </MemoryRouter>
-      )
+      // render(
+      //   <MemoryRouter>
+      //     <AppRouter/>
+      //     <Users/> //Можно просто прокинуть компонент после роутов и не указывать initialRoutes
+      //   </MemoryRouter>
+      // )
+      // render(renderWithRouter(null, '/users')); //Можно так
+      render(renderWithRouter(<Users/>)); //Или так, renderWithRouter - это вспомогательная функция
       const users = await screen.findAllByTestId("user-item");
       expect(users.length).toBe(3);
       await userEvent.click(users[0]);

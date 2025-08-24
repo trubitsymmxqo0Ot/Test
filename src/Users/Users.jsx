@@ -17,8 +17,7 @@ export const Users = () => {
         loadFunction();
     }, [])
     return (
-        
-        <div>
+        <div data-testid='users-page'>
         {users.map(item => 
             <Link 
                 to={`/users/${item.id}`} 
