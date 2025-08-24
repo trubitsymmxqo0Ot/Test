@@ -1,30 +1,25 @@
-import { useEffect, useState } from 'react'
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import './App.css'
+import { MainPage } from './pages/MainPage'
+import { AboutPage } from './pages/AboutPage'
+import { ErrorPage } from './pages/ErrorPage'
+import { Users } from './Users/Users'
+import { UserDetailsPage } from './pages/UserDetailsPage'
 
 function App() {
-  const [data, setData] = useState(null);
-  const [toggle, setToggle] = useState(false);
-  const [text, setText] = useState('');
-  const [userText, setUserText] = useState('');
-  const onClickToggle = () => {
-    setToggle(prev => !prev);
-  }
-  useEffect(() => {
-    setTimeout(() => {
-      setData({});
-    }, 100)
-  })
+
   return (
     <div>
-      <h1 data-testid='h1Test'>{text}</h1>
-      <h2 data-testid='userH1'>{userText}</h2>
-      {toggle === true && <div data-testid="toggle-text">toggle text</div>}
-      {data && <div style={{color: "red"}}>text</div>}
-      <h1>Hello world</h1>
-      <button onClick={onClickToggle} data-testid="toggle-button">click me</button>
-      <input type="text" placeholder='user event input' onChange={e => setUserText(e.target.value)}/>
-      <input type="text" placeholder='new input' onChange={e => setText(e.target.value)}/>
-      <input type="text" placeholder='some input...'/>
+      <Link to="/" data-testid="main-page-link">Main</Link>
+      <Link to="/about" data-testid="about-page-link">About</Link>
+      <Link to='/users' data-testid='users-page-link'>Users</Link>
+      <Routes>
+        <Route path='/' element={<MainPage/>}/>
+        <Route path='/about' element={<AboutPage/>}/>
+        <Route path="/*" element={<ErrorPage/>}/>
+        <Route path='/users' element={<Users/>}/>
+        <Route path='/users/:id' element={<UserDetailsPage/>}/>
+      </Routes>
     </div>
   )
 }
