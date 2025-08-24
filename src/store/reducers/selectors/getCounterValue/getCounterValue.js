@@ -1,0 +1,1 @@
+export const getCounterValue = state => state?.counter?.count || 0;
