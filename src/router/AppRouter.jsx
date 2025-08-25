@@ -4,6 +4,7 @@ import { AboutPage } from "../pages/AboutPage";
 import { ErrorPage } from "../pages/ErrorPage";
 import { User } from "../components/User/User";
 import { UserPage } from "../pages/UserPage";
+import { HelloWorld } from "../pages/HelloWorld";
 export const AppRouter = () => {
   return (
     <>
@@ -12,6 +13,7 @@ export const AppRouter = () => {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/users" element={<UserPage />} />
         <Route path="/users/:id" element={<User />} />
+        <Route path="/hello" element={<HelloWorld />} />
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
     </>
